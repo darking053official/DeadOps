@@ -129,7 +129,7 @@ offset_left = 40.0
 offset_top = 25.0
 offset_right = 480.0
 offset_bottom = 50.0
-text = "oyuncu adi"
+text = "oyuncu adı"
 theme_override_colors/font_color = Color(0.7, 0.75, 0.9, 1)
 theme_override_font_sizes/font_size = 18
 
@@ -140,7 +140,7 @@ offset_top = 55.0
 offset_right = 480.0
 offset_bottom = 100.0
 theme_override_styles/normal = SubResource("girdi_stili")
-placeholder_text = "adini gir"
+placeholder_text = "adını gir"
 alignment = 1
 
 [node name="TekButonu" type="Button" parent="Panel"]
@@ -165,7 +165,7 @@ theme_override_styles/normal = SubResource("buton_normal")
 theme_override_styles/hover = SubResource("buton_hover")
 theme_override_styles/pressed = SubResource("buton_pressed")
 theme_override_font_sizes/font_size = 22
-text = "sunucu ac (lan)"
+text = "sunucu aç (lan)"
 
 [node name="IpGirdisi" type="LineEdit" parent="Panel"]
 layout_mode = 0
@@ -174,7 +174,7 @@ offset_top = 255.0
 offset_right = 480.0
 offset_bottom = 300.0
 theme_override_styles/normal = SubResource("girdi_stili")
-placeholder_text = "sunucu ip (orn: 192.168.1.5)"
+placeholder_text = "sunucu ip (örn: 192.168.1.5)"
 alignment = 1
 
 [node name="BaglanButonu" type="Button" parent="Panel"]
@@ -187,7 +187,7 @@ theme_override_styles/normal = SubResource("buton_normal")
 theme_override_styles/hover = SubResource("buton_hover")
 theme_override_styles/pressed = SubResource("buton_pressed")
 theme_override_font_sizes/font_size = 22
-text = "baglan"
+text = "bağlan"
 
 [node name="DurumEtiketi" type="Label" parent="."]
 layout_mode = 1
