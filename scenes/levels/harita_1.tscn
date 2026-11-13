@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/harita_tabani.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="zemin_sekil"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="zemin_mat"]
+albedo_color = Color(0.28, 0.3, 0.32, 1)
+
+[sub_resource type="BoxMesh" id="zemin_mesh"]
+material = SubResource("zemin_mat")
+size = Vector3(80, 1, 80)
+
+[sub_resource type="BoxShape3D" id="bina_sekil"]
+size = Vector3(8, 10, 8)
+
+[sub_resource type="StandardMaterial3D" id="bina_mat"]
+albedo_color = Color(0.45, 0.42, 0.38, 1)
+
+[sub_resource type="BoxMesh" id="bina_mesh"]
+material = SubResource("bina_mat")
+size = Vector3(8, 10, 8)
+
+[node name="Harita1" type="Node3D"]
+script = ExtResource("1")
+dusman_sayisi = 4
+spawn_noktalari = Array[Vector3]([Vector3(20, 1, 20), Vector3(-20, 1, 20), Vector3(20, 1, -20), Vector3(-20, 1, -20)])
+
+[node name="Zemin" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Zemin"]
+shape = SubResource("zemin_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Zemin"]
+mesh = SubResource("zemin_mesh")
+
+[node name="Gunes" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0.7, 0, -0.7, 0.7, 0, 20, 0)
+shadow_enabled = true
+
+[node name="Bina1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 15)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Bina1"]
+shape = SubResource("bina_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Bina1"]
+mesh = SubResource("bina_mesh")
+
+[node name="Bina2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 15)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Bina2"]
+shape = SubResource("bina_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Bina2"]
+mesh = SubResource("bina_mesh")
+
+[node name="Bina3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, -15)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Bina3"]
+shape = SubResource("bina_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Bina3"]
+mesh = SubResource("bina_mesh")
+
+[node name="Bina4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, -15)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Bina4"]
+shape = SubResource("bina_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Bina4"]
+mesh = SubResource("bina_mesh")
