@@ -7,12 +7,13 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameManager.reset()
 
-	var hud := CanvasLayer.new()
-	if hud_scene:
-		hud = hud_scene.instantiate()
-	else:
-		var hud_packed: PackedScene = load("res://ui/hud.tscn")
-		hud = hud_packed.instantiate()
+	# Fallback: sahnede atanmamışsa kodla yükle
+	if not player_scene:
+		player_scene = load("res://scenes/actors/player/player.tscn")
+	if not hud_scene:
+		hud_scene = load("res://ui/hud.tscn")
+
+	var hud := hud_scene.instantiate()
 	add_child(hud)
 
 	if multiplayer.multiplayer_peer:
