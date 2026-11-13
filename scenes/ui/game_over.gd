@@ -2,12 +2,12 @@ extends Control
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$ScoreLabel.text = "SKOR: " + str(GameManager.score)
-	$RetryButton.pressed.connect(_on_retry)
-	$MenuButton.pressed.connect(_on_menu)
+	$SkorEtiketi.text = "skor: " + str(GameManager.score)
+	$TekrarButonu.pressed.connect(_tekrar_oyna)
+	$MenuButonu.pressed.connect(_ana_menu)
 
-func _on_retry() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/game_level.tscn")
+func _tekrar_oyna() -> void:
+	get_tree().change_scene_to_file(GameManager.secili_harita)
 
-func _on_menu() -> void:
+func _ana_menu() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
