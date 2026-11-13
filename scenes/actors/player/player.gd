@@ -8,6 +8,7 @@ const TOUCH_SENSITIVITY := 0.005
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_pitch := 0.0
 var move_input := Vector2.ZERO
+var peer_id: int = 1
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -15,9 +16,16 @@ var move_input := Vector2.ZERO
 
 func _ready() -> void:
 	add_to_group("player")
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	set_multiplayer_authority(peer_id)
+	if is_multiplayer_authority():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		camera.current = true
+	else:
+		camera.current = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		camera_pitch = clamp(camera_pitch - event.relative.y * MOUSE_SENSITIVITY, -1.5, 1.5)
@@ -32,6 +40,8 @@ func set_move_input(value: Vector2) -> void:
 	move_input = value
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -55,6 +65,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
 	if event.is_action_pressed("shoot"):
 		shoot()
 
@@ -63,4 +75,6 @@ func shoot() -> void:
 		pistol.fire()
 
 func take_damage(amount: float) -> void:
+	if multiplayer.multiplayer_peer and not multiplayer.is_server():
+		return
 	GameManager.damage_player(int(amount))
