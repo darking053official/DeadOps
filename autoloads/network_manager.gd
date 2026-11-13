@@ -3,7 +3,7 @@ extends Node
 const PORT := 7777
 const MAX_PLAYERS := 4
 
-var peers: Dictionary = {}  # peer_id -> player_name
+var peers: Dictionary = {}
 var is_host := false
 
 signal player_list_changed
@@ -12,7 +12,7 @@ func host_game(player_name: String) -> void:
 	var peer := ENetMultiplayerPeer.new()
 	var err := peer.create_server(PORT, MAX_PLAYERS)
 	if err != OK:
-		push_error("Server oluşturulamadı: %s" % err)
+		push_error("sunucu oluşturulamadı: %s" % err)
 		return
 	multiplayer.multiplayer_peer = peer
 	is_host = true
@@ -25,7 +25,7 @@ func join_game(ip: String, player_name: String) -> void:
 	var peer := ENetMultiplayerPeer.new()
 	var err := peer.create_client(ip, PORT)
 	if err != OK:
-		push_error("Bağlanılamadı: %s" % err)
+		push_error("bağlanılamadı: %s" % err)
 		return
 	multiplayer.multiplayer_peer = peer
 	is_host = false
@@ -41,7 +41,7 @@ func _connect_signals() -> void:
 
 func _on_peer_connected(id: int) -> void:
 	if is_host:
-		peers[id] = "Player%d" % id
+		peers[id] = "oyuncu%d" % id
 		player_list_changed.emit()
 		_sync_player_list.rpc(peers)
 
@@ -50,7 +50,7 @@ func _on_peer_disconnected(id: int) -> void:
 	player_list_changed.emit()
 
 func _on_connected_to_server() -> void:
-	_register_player.rpc_id(1, "Player%d" % multiplayer.get_unique_id())
+	_register_player.rpc_id(1, "oyuncu%d" % multiplayer.get_unique_id())
 
 @rpc("any_peer", "reliable")
 func _register_player(player_name: String) -> void:
@@ -65,4 +65,4 @@ func _sync_player_list(new_peers: Dictionary) -> void:
 	player_list_changed.emit()
 
 func change_to_game() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/game_level.tscn")
+	get_tree().change_scene_to_file(GameManager.secili_harita)
