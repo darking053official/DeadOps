@@ -2,7 +2,8 @@ extends Node
 
 var score: int = 0
 var player_health: int = 100
-var scores: Dictionary = {}  # peer_id -> score
+var scores: Dictionary = {}
+var secili_harita: String = "res://scenes/levels/harita_1.tscn"
 
 signal score_changed(new_score: int)
 signal health_changed(new_health: int)
