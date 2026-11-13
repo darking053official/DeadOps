@@ -1,47 +1,46 @@
 extends Control
 
-signal direction_changed(direction: Vector2)
+signal yon_degisti(yon: Vector2)
 
-@export var base_radius: float = 80.0
-@export var knob_radius: float = 35.0
+@export var taban_yaricap: float = 80.0
+@export var topuz_yaricap: float = 35.0
 
-var _touch_index: int = -1
-var _center: Vector2
-var _knob_pos: Vector2
-var _direction: Vector2 = Vector2.ZERO
+var _dokunma_indeksi: int = -1
+var _merkez: Vector2
+var _topuz_konum: Vector2
+var _yon: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	_center = size / 2.0
-	_knob_pos = _center
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_merkez = size / 2.0
+	_topuz_konum = _merkez
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		var local := get_global_transform_with_canvas().affine_inverse() * event.position
-		if event.pressed and _touch_index == -1:
-			_touch_index = event.index
-			_center = local
-			_knob_pos = local
-			_update_direction()
+func _gui_input(olay: InputEvent) -> void:
+	if olay is InputEventScreenTouch:
+		if olay.pressed and _dokunma_indeksi == -1:
+			_dokunma_indeksi = olay.index
+			_merkez = olay.position
+			_topuz_konum = olay.position
+			_yonu_guncelle()
 			queue_redraw()
-		elif not event.pressed and event.index == _touch_index:
-			_touch_index = -1
-			_knob_pos = _center
-			_direction = Vector2.ZERO
-			direction_changed.emit(Vector2.ZERO)
+		elif not olay.pressed and olay.index == _dokunma_indeksi:
+			_dokunma_indeksi = -1
+			_topuz_konum = _merkez
+			_yon = Vector2.ZERO
+			yon_degisti.emit(Vector2.ZERO)
 			queue_redraw()
-	elif event is InputEventScreenDrag and event.index == _touch_index:
-		_knob_pos = get_global_transform_with_canvas().affine_inverse() * event.position
-		_update_direction()
+	elif olay is InputEventScreenDrag and olay.index == _dokunma_indeksi:
+		_topuz_konum = olay.position
+		_yonu_guncelle()
 		queue_redraw()
 
-func _update_direction() -> void:
-	var offset := _knob_pos - _center
-	var dist := min(offset.length(), base_radius)
-	_direction = (offset.normalized() * (dist / base_radius)) if offset.length() > 0 else Vector2.ZERO
-	direction_changed.emit(_direction)
+func _yonu_guncelle() -> void:
+	var fark := _topuz_konum - _merkez
+	var mesafe := min(fark.length(), taban_yaricap)
+	_yon = (fark.normalized() * (mesafe / taban_yaricap)) if fark.length() > 0 else Vector2.ZERO
+	yon_degisti.emit(_yon)
 
 func _draw() -> void:
-	draw_circle(_center, base_radius, Color(1, 1, 1, 0.15))
-	draw_arc(_center, base_radius, 0, TAU, 32, Color(1, 1, 1, 0.4), 2.0)
-	draw_circle(_center + _direction * base_radius, knob_radius, Color(1, 1, 1, 0.6))
+	draw_circle(_merkez, taban_yaricap, Color(1, 1, 1, 0.15))
+	draw_arc(_merkez, taban_yaricap, 0, TAU, 32, Color(1, 1, 1, 0.4), 2.0)
+	draw_circle(_merkez + _yon * taban_yaricap, topuz_yaricap, Color(1, 1, 1, 0.6))
