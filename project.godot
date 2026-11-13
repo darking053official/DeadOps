@@ -4,7 +4,7 @@ config_version=5
 
 config/name="DeadOps"
 config/description="Tactical mobile FPS"
-run/main_scene="res://scenes/levels/game_level.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
