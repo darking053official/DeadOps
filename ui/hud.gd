@@ -25,7 +25,7 @@ func _ates_et() -> void:
 		oyuncu.shoot()
 
 func _sarjor_degistir() -> void:
-	print("sarjor degistiriliyor")
+	print("şarjör değiştiriliyor")
 
 func _skor_degisti(yeni_skor: int) -> void:
 	skor_etiketi.text = "skor: " + str(yeni_skor)
