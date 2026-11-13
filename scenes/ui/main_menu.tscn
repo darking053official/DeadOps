@@ -1,122 +1,222 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
-bg_color = Color(0.15, 0.15, 0.2, 0.9)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_left = 8
-corner_radius_bottom_right = 8
+[sub_resource type="StyleBoxFlat" id="buton_normal"]
+bg_color = Color(0.12, 0.14, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.4, 0.55, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="buton_hover"]
+bg_color = Color(0.18, 0.22, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.65, 0.9, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="buton_pressed"]
+bg_color = Color(0.08, 0.1, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.4, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="girdi_stili"]
+bg_color = Color(0.1, 0.12, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.35, 0.5, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
+[node name="AnaMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="ArkaPlan" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.08, 0.08, 0.1, 1)
+color = Color(0.06, 0.07, 0.1, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="UstSerit" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+color = Color(0.75, 0.15, 0.15, 1)
+
+[node name="Baslik" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = 150.0
+text = "DEADOPS"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.95, 0.95, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.6, 0.05, 0.05, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 92
+
+[node name="AltBaslik" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_top = 40.0
+offset_top = 145.0
 offset_right = 300.0
-offset_bottom = 130.0
-text = "DEADOPS"
+offset_bottom = 175.0
+text = "taktiksel mobil fps"
 horizontal_alignment = 1
-vertical_alignment = 1
-theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(0.6, 0.65, 0.8, 1)
+theme_override_font_sizes/font_size = 20
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -150.0
-offset_top = 150.0
-offset_right = 150.0
-offset_bottom = 180.0
-text = "Oyuncu Adı:"
-horizontal_alignment = 1
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = 200.0
 
-[node name="NameInput" type="LineEdit" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
+[node name="IsimEtiketi" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 25.0
+offset_right = 480.0
+offset_bottom = 50.0
+text = "oyuncu adi"
+theme_override_colors/font_color = Color(0.7, 0.75, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="IsimGirdisi" type="LineEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 55.0
+offset_right = 480.0
+offset_bottom = 100.0
+theme_override_styles/normal = SubResource("girdi_stili")
+placeholder_text = "adini gir"
+alignment = 1
+
+[node name="TekButonu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 480.0
+offset_bottom = 175.0
+theme_override_styles/normal = SubResource("buton_normal")
+theme_override_styles/hover = SubResource("buton_hover")
+theme_override_styles/pressed = SubResource("buton_pressed")
+theme_override_font_sizes/font_size = 26
+text = "tek oyuncu"
+
+[node name="SunucuButonu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
 offset_top = 185.0
-offset_right = 150.0
-offset_bottom = 225.0
-placeholder_text = "Adını gir"
-alignment = 1
+offset_right = 480.0
+offset_bottom = 240.0
+theme_override_styles/normal = SubResource("buton_normal")
+theme_override_styles/hover = SubResource("buton_hover")
+theme_override_styles/pressed = SubResource("buton_pressed")
+theme_override_font_sizes/font_size = 22
+text = "sunucu ac (lan)"
 
-[node name="SingleButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 250.0
-offset_right = 150.0
+[node name="IpGirdisi" type="LineEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 255.0
+offset_right = 480.0
 offset_bottom = 300.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "TEK OYUNCU"
-
-[node name="HostButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 310.0
-offset_right = 150.0
-offset_bottom = 360.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "SUNUCU AÇ (LAN)"
-
-[node name="IPInput" type="LineEdit" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 370.0
-offset_right = 150.0
-offset_bottom = 410.0
-placeholder_text = "Sunucu IP (örn: 192.168.1.5)"
+theme_override_styles/normal = SubResource("girdi_stili")
+placeholder_text = "sunucu ip (orn: 192.168.1.5)"
 alignment = 1
 
-[node name="JoinButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 420.0
-offset_right = 150.0
-offset_bottom = 470.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "BAĞLAN"
+[node name="BaglanButonu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 310.0
+offset_right = 480.0
+offset_bottom = 365.0
+theme_override_styles/normal = SubResource("buton_normal")
+theme_override_styles/hover = SubResource("buton_hover")
+theme_override_styles/pressed = SubResource("buton_pressed")
+theme_override_font_sizes/font_size = 22
+text = "baglan"
 
-[node name="StatusLabel" type="Label" parent="."]
+[node name="DurumEtiketi" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -250.0
-offset_top = 490.0
-offset_right = 250.0
-offset_bottom = 520.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -70.0
+offset_right = 300.0
+offset_bottom = -40.0
 text = ""
 horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.7, 0.75, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="SurumEtiketi" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = -20.0
+offset_bottom = -15.0
+text = "v1.0"
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.4, 0.45, 0.55, 1)
+theme_override_font_sizes/font_size = 16
