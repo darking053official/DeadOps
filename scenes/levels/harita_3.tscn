@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/harita_tabani.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="zemin_sekil"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="zemin_mat"]
+albedo_color = Color(0.72, 0.6, 0.38, 1)
+
+[sub_resource type="BoxMesh" id="zemin_mesh"]
+material = SubResource("zemin_mat")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="kaya_sekil"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="kaya_mat"]
+albedo_color = Color(0.5, 0.42, 0.32, 1)
+
+[sub_resource type="BoxMesh" id="kaya_mesh"]
+material = SubResource("kaya_mat")
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="rampa_sekil"]
+size = Vector3(6, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="rampa_mat"]
+albedo_color = Color(0.6, 0.5, 0.35, 1)
+
+[sub_resource type="BoxMesh" id="rampa_mesh"]
+material = SubResource("rampa_mat")
+size = Vector3(6, 1, 10)
+
+[node name="Harita3" type="Node3D"]
+script = ExtResource("1")
+dusman_sayisi = 6
+spawn_noktalari = Array[Vector3]([Vector3(25, 1, 25), Vector3(-25, 1, 25), Vector3(25, 1, -25), Vector3(-25, 1, -25), Vector3(0, 1, 30), Vector3(0, 1, -30)])
+
+[node name="Zemin" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Zemin"]
+shape = SubResource("zemin_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Zemin"]
+mesh = SubResource("zemin_mesh")
+
+[node name="Gunes" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0.7, 0, -0.7, 0.7, 0, 20, 0)
+shadow_enabled = true
+
+[node name="Kaya1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.5, 12)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Kaya1"]
+shape = SubResource("kaya_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Kaya1"]
+mesh = SubResource("kaya_mesh")
+
+[node name="Kaya2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, 12)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Kaya2"]
+shape = SubResource("kaya_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Kaya2"]
+mesh = SubResource("kaya_mesh")
+
+[node name="Kaya3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.5, -12)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Kaya3"]
+shape = SubResource("kaya_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Kaya3"]
+mesh = SubResource("kaya_mesh")
+
+[node name="Kaya4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, -12)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Kaya4"]
+shape = SubResource("kaya_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Kaya4"]
+mesh = SubResource("kaya_mesh")
+
+[node name="Rampa1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7, -0.7, 0, 0.7, 0.7, 25, 2, 0)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Rampa1"]
+shape = SubResource("rampa_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Rampa1"]
+mesh = SubResource("rampa_mesh")
+
+[node name="Rampa2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0.7, 0, -0.7, 0.7, -25, 2, 0)
+
+[node name="Carpisma" type="CollisionShape3D" parent="Rampa2"]
+shape = SubResource("rampa_sekil")
+
+[node name="Gorsel" type="MeshInstance3D" parent="Rampa2"]
+mesh = SubResource("rampa_mesh")
