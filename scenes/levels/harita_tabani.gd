@@ -17,7 +17,7 @@ func _ready() -> void:
 	if not dusman_scene:
 		dusman_scene = load("res://scenes/enemies/enemy.tscn")
 
-	var hud := hud_scene.instantiate()
+	var hud = hud_scene.instantiate()
 	add_child(hud)
 
 	_dusmanlari_yerlestir()
@@ -30,7 +30,7 @@ func _ready() -> void:
 			multiplayer.peer_connected.connect(_oyuncu_olustur)
 
 func _oyuncu_olustur(id: int) -> void:
-	var oyuncu := player_scene.instantiate()
+	var oyuncu = player_scene.instantiate()
 	oyuncu.peer_id = id
 	oyuncu.name = "Oyuncu_" + str(id)
 	oyuncu.position = Vector3(0, 1, 0)
@@ -42,7 +42,7 @@ func _dusmanlari_yerlestir() -> void:
 			var nokta := Vector3(randf_range(-25, 25), 1, randf_range(-25, 25))
 			if spawn_noktalari.size() > 0 and i < spawn_noktalari.size():
 				nokta = spawn_noktalari[i]
-			var dusman := dusman_scene.instantiate()
+			var dusman = dusman_scene.instantiate()
 			dusman.position = nokta
 			add_child(dusman)
 
